@@ -1,0 +1,79 @@
+Journal de bord de Maxime COUSTOU
+
+------------
+28 mars 2025
+------------
+
+J'ai télécahrgé le fichier "TAIR10_ET.fas" dans "/home/maxime/Documents/Univ Evry/L3/S6/projet bio-info/projet/TAIR10_TE.fas"
+
+$grep ">" TAIR10_ET.fas |wc -l
+=> 31189 copies différentes au total
+
+awk 'NR > 1 {print $5 ":" $6}' "TAIR10_Transposable_Elements.txt" | grep 'LTR' | sort | uniq -c
+=>donne la liste des ET de la famille LTR et le nombre de copies par famille
+enregistré dans 'LTR_list.txt'
+
+awk 'NR > 1 {print $5 ":" $6}' "TAIR10_Transposable_Elements.txt" | grep ‘DNA’| sort | uniq -c
+=>donne la liste des ET de la famille DNA et le nombre de copies par famille
+enregistré dans 'DNA_list.txt'
+
+------------
+1 avril 2025
+------------
+
+Sélection des familles suivantes :
+116 SIMPLEGUY1:DNA/Harbinger
+138 META1:LTR/Copia
+
+------------
+4 avril 2025
+------------
+
+Sur unix, grep “>” TAIR10_TE.fas |cut -d ‘|’ -f 1,5,7 > donnees_histo.txt pour avoir les longueurs de chaque séquence dans un fichier pour faire l'histogramme.
+
+Dans le fichier "Athaliana_RepBase_EMBL.txt" (dossier projet) qui donne les fiches embl de chaque famille, j'ai recherché les familles qui m'intéressent avec un CTRL+F.
+J'ai copié les fiches embl pour chaque famille et je les ai mis dans des fichiers texte tel que "FAMILLE_embl.txt".
+
+------------
+11 avril 2025
+------------
+
+création des fichiers fasta des 6 séquences référence des 6 familles grâce aux 2 programmes python : "embl-to-fasta.py" puis "lire-fichiers-fasta.py"
+création de la base de donnée des copies ET :
+1/ on remplace les barres obliques "|" par des espaces dans le fichiers des séquences fasta "TAIR10_TE.fas" :
+sed -i ‘s/|/ /g’ TAIR10_TE.fas
+2/ création de la base de données :
+makeblastdb -in TAIR10_TE.fas -parse_seqids -dbtype nucl
+
+à faire : donner les fasta des autres
+
+------------
+18 avril 2025
+------------
+
+Tous les fasta des séquences consensus des familles ET ont été créés
+->créer un txt pour chaque famille contenant toutes les copies d'une famille donnée
+
+------------
+19 mai 2025
+------------
+
+Akshay nous a donné des fichiers .txt contenant toutes les copies de chaque famille comme "META1_copies.txt" par exemple.
+J'ai mis les fichiers des copies de mes familles dans un dossier "BDD" dans "projet" et j'en ai fait des bases de données blast+ avec unix :
+blastn -db META1_copies.txt -query META1_refseqfasta.txt -outfmt 7 -out META1_res.txt
+blastn -db SIMPLEGUY1_copies.txt -query SIMPLEGUY1_refseqfasta.txt -outfmt 7 -out SIMPLEGUY_res.txt
+Les fichiers "refseqfasta" correspondent aux séquences fasta des copies de référence des deux familles que j'ai renommé pour les reconnaître dans le dossier BDD.
+
+------------
+26 mai 2025
+------------
+
+Rédaction de l'introduction du rapport, avec le début de "matériel et méthodes" à finir
+
+------------
+27 mai 2025
+------------
+
+J'ai fini la partie matériel&méthodes, et j'ai écris la majorité de la partie "Résultats et Analyses Blast"
+
+

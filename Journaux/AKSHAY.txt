@@ -1,0 +1,83 @@
+AKSHAY
+L3 LDDSDVI
+20224297
+
+**28/03/2025**
+
+*On a passé la séance à tester des commandes Linux pour répondre aux questions à la fin du sujet.
+*J’ai commencé à explorer les fichiers fournis (TAIR10), mais je n’ai pas encore été très loin dans      l’analyse. 
+
+
+**04/04/2025**
+
+* Je me suis occupé de créer les bases de données BlastN.
+* D'abord, j'ai modifié le fichier `.fas.txt` avec `sed` pour retirer les `|` :
+  `sed -i 's/|/ /g' TAIR10_TE.fas.txt`
+* Ensuite, j'ai lancé la création de la base de données :
+  `makeblastdb -in TAIR10_TE.fas.txt -parse_seqids -dbtype nucl`
+* J’ai aussi commencé à coder en R pour générer les histogrammes de taille des copies.
+
+---
+
+**11/04/2025**
+
+* Maxime a codé un script pour passer du format EMBL au format FASTA. Je l’ai aidé en automatisant la recherche des séquences pour éviter les CTRL+F.
+* Finalement, son script a fini par marcher avant que j’aie terminé.
+
+---
+
+**17/05/2025**
+
+* J’ai généré les fichiers `.fasta` pour mes deux familles : **ENDOVIR1** (LTR/Copia) et **ATLINE1\_3A** (LINE/L1).
+* Ensuite, j’ai préparé les bases de données spécifiques à chaque famille avec les commandes :
+
+  ```bash
+  sed -i 's/|/ /g' famille_copies.txt  
+  makeblastdb -in famille_copies.txt -parse_seqids -dbtype nucl
+  ```
+* Puis j’ai fait mes **BlastN** :
+
+  ```bash
+  blastn -db ATLINE1_3A_copies.txt -query Références/ATLINE1_3A_ref.txt -outfmt 7 -out ATLINE1_3A_res
+  blastn -db ENDOVIR1_copies.txt -query Références/ENDOVIR1_ref.txt -outfmt 7 -out ENDOVIR1_res
+  ```
+
+---
+
+**17/05/2025 (suite)**
+
+* J’ai corrigé le code R pour les histogrammes. Les nouvelles figures sont plus lisibles.
+* Exemple d’analyse qu’on pourra en tirer :
+
+  * Si la copie de référence fait 7000bp et que peu de copies sont proches de cette taille, elles sont probablement non fonctionnelles.
+  * Si plusieurs copies sont très petites (<1000bp), elles pourraient être des LTR solos.
+
+---
+
+**18/05/2025**
+
+* J’ai fait le **Modèle Entité-Association** pour la base de données.
+* Petit point à noter : l’attribut `Taille_Analyse` doit décrire la taille de l’alignement.
+
+---
+
+**20/05/2025**
+
+* J’ai utilisé le modèle EA pour créer la base de données **TEnder** avec PostgreSQL.
+* Création via fichier `.sql` + affichage graphique dans **PGAdmin**.
+* La base regroupe toutes les infos sur les copies.
+* Si une copie n’a pas été analysée, on lui met `Fonctionnelle = FALSE`.
+* Connexion utilisée :
+  `psql -U crakshay -d tender`
+
+---
+
+**26/05/2025 et 27/05/2025**
+
+On a travaillé en groupe pour finaliser les analyses, les alignements BLASTN et les représentations graphiques.
+
+J’ai revérifié mes résultats pour ENDOVIR1 et ATLINE1_3A, et comparé avec ceux de Maxime et Hugo.
+
+On a également terminé ensemble le rapport à rendre pour le projet.
+
+---

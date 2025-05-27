@@ -1,0 +1,421 @@
+FERNANDES TELES 
+Hugo Miguel
+20211672
+L3 LDDSDVI 
+
+
+28/03/2025:
+-Mon ordi ne voulait pas fonctionner j'ai passe la plupart du temps a essayer de resoudre le probleme, enfin j'ai decide de faire a la maison.
+
+30/03/2025:
+-Enfin reussi a intaller une image de Ubuntu sur mon Ordinateur Windows grace a WSL. 
+	Comment faire:
+	-https://documentation.ubuntu.com/wsl/en/latest/howto/install-ubuntu-wsl2/
+-D'abord je relis le pdf sur les elements transposables.
+-Je commence a essayer de trouver les réponses pour les questions a la toute fin. 
+
+	NOMBRE DE CHROMOSOMES
+
+-TAIR10_genes_positions.txt je vois que le fichier est divisé en colonnes avec la 4eme colonne étant le chromosome. 
+Du coup je fais un:
+	-cut -d' ' -f4 TAIR10_genes_positions.txt 
+	j'obtiens tout la 4éme colonne mais je veut pas de repetitions
+	-cut -d' ' -f4 TAIR10_genes_positions.txt | uniq 
+resultat:
+Idendifiant_prot        Identifiant_gene        taille_prot     Chromosome      debut   fin     orientation     info_gene       description
+1
+2
+3
+4
+5
+Pt
+Mt
+
+je compte 5 plus Mt = génome mitochondrial plus PT = génome du chloroplaste
+
+	NOMBRE TOTAL D'ET 
+
+-TAIR10_Transposable_Elements.txt 
+	La premiere colonne étant le nom de l'ET.
+	je reutilise la commande d'avant en mettant en plus wc -l pour compter le nombre de lignes 
+	-cut -d' ' -f1 TAIR10_Transposable_Elements.txt | uniq | wc -l
+	->31190
+Donc dans le fichier on retrouve 31190 ETs differents 
+
+	NOMBRE TOTAL D'ET PAR CHROMOSOME
+
+Sur le même fichier, on peut voir que la 3éme lettre du nom de chaque ET correspond au chromosome où l’on peut trouver ce même ET.
+Il faut donc une commande pour obtenir toutes les 3émes lettres des noms.
+
+	D'abord j'ai fait 
+	-awk '{print substr($1,3,1)}' TAIR10_Transposable_Elements.txt | uniq | wc -l
+	et j'ai obtenu 11 mais je me suis dit qu'il fallait essayer encore 
+	Puit j'ai fait 
+	awk '{print substr($1,3,1)}' TAIR10_Transposable_Elements.txt | uniq -c
+	et j'ai vu par les contages que tout n'était pas dans l'ordre 
+	donc j'ai fait 
+	awk '{print substr($1,3,1)}' TAIR10_Transposable_Elements.txt | sort | uniq -c
+	J'ai vu que linux prenait en compte la premiere ligne car 
+	"1 a"
+	Donc, j’ai cherché comment commencer à la 2éme ligne.
+	awk 'NR > 1 {print substr($1,3,1)}' TAIR10_Transposable_Elements.txt | sort | uniq | wc -l
+	et j'ai eu 5.
+
+	NOMBRE DE FAMILLES D'ET
+
+	On retrouve la famille dans la 5éme colomne 
+	Je reprends la commande AWK 
+	-awk 'NR > 1 {print $5}' TAIR10_Transposable_Elements.txt | sort | uniq | wc -l
+	On retrouve 320 si on compte unassigned.
+
+	NOMBRE DE COPIES PAR FAMILLE
+
+	On reprend la même commande, mais on va utiliser l’option -c de uniq pour compter.
+	-awk 'NR > 1 {print substr($1,3,1)}' TAIR10_Transposable_Elements.txt | sort | uniq -c
+	
+ 39 ARNOLD1
+     68 ARNOLD2
+     45 ARNOLD3
+     23 ARNOLD4
+    237 ARNOLDY1
+    288 ARNOLDY2
+     10 AT9MU1
+     45 AT9NMU1
+     55 AT9TSD1
+     11 ATCOPIA1
+      7 ATCOPIA10
+     26 ATCOPIA11
+     15 ATCOPIA12
+     35 ATCOPIA13
+      7 ATCOPIA14
+     14 ATCOPIA15
+     12 ATCOPIA16
+     16 ATCOPIA17
+      2 ATCOPIA18
+      2 ATCOPIA18A
+      4 ATCOPIA19
+      6 ATCOPIA2
+      6 ATCOPIA20
+     14 ATCOPIA21
+     14 ATCOPIA22
+      8 ATCOPIA23
+     27 ATCOPIA24
+      9 ATCOPIA25
+     19 ATCOPIA26
+     19 ATCOPIA27
+     81 ATCOPIA28
+     19 ATCOPIA29
+      8 ATCOPIA3
+     33 ATCOPIA30
+      8 ATCOPIA31
+      5 ATCOPIA31A
+      8 ATCOPIA32
+     10 ATCOPIA32B
+      6 ATCOPIA33
+     16 ATCOPIA34
+     22 ATCOPIA35
+     14 ATCOPIA36
+     32 ATCOPIA37
+      9 ATCOPIA38
+      2 ATCOPIA38A
+      5 ATCOPIA38B
+      5 ATCOPIA39
+     11 ATCOPIA4
+      6 ATCOPIA40
+     39 ATCOPIA41
+     35 ATCOPIA42
+     29 ATCOPIA43
+     12 ATCOPIA44
+     20 ATCOPIA45
+      7 ATCOPIA46
+      4 ATCOPIA47
+     15 ATCOPIA48
+     34 ATCOPIA49
+     16 ATCOPIA5
+     17 ATCOPIA50
+     14 ATCOPIA51
+      7 ATCOPIA52
+      5 ATCOPIA53
+     18 ATCOPIA54
+      9 ATCOPIA55
+     16 ATCOPIA56
+     48 ATCOPIA57
+     18 ATCOPIA58
+     20 ATCOPIA59
+      8 ATCOPIA6
+      4 ATCOPIA60
+     12 ATCOPIA61
+     16 ATCOPIA62
+     11 ATCOPIA63
+     13 ATCOPIA64
+     34 ATCOPIA65
+      9 ATCOPIA65A
+     20 ATCOPIA66
+     15 ATCOPIA67
+     43 ATCOPIA68
+     25 ATCOPIA69
+      5 ATCOPIA7
+      8 ATCOPIA70
+      9 ATCOPIA71
+      4 ATCOPIA72
+      3 ATCOPIA73
+      7 ATCOPIA74
+     20 ATCOPIA75
+      7 ATCOPIA76
+      6 ATCOPIA77
+     24 ATCOPIA78
+      7 ATCOPIA79
+      7 ATCOPIA80
+      6 ATCOPIA81
+      7 ATCOPIA82
+      7 ATCOPIA83
+     10 ATCOPIA84
+      7 ATCOPIA85
+      7 ATCOPIA86
+     19 ATCOPIA87
+      8 ATCOPIA88
+     12 ATCOPIA89
+     12 ATCOPIA8A
+      8 ATCOPIA8B
+      9 ATCOPIA9
+      6 ATCOPIA90
+      7 ATCOPIA91
+      8 ATCOPIA92
+     10 ATCOPIA93
+     39 ATCOPIA94
+     72 ATCOPIA95
+     16 ATCOPIA96
+     10 ATCOPIA97
+     22 ATDNA12T3A
+    660 ATDNA12T3_2
+     36 ATDNA1T9A
+     48 ATDNA2T9A
+     26 ATDNA2T9B
+    242 ATDNA2T9C
+     25 ATDNAI26T9
+    116 ATDNAI27T9A
+     43 ATDNAI27T9B
+    108 ATDNAI27T9C
+     28 ATDNATA1
+     30 ATENSPM1
+     81 ATENSPM10
+     47 ATENSPM11
+     77 ATENSPM1A
+    114 ATENSPM2
+     98 ATENSPM3
+     50 ATENSPM4
+    111 ATENSPM5
+    151 ATENSPM6
+     74 ATENSPM7
+     11 ATENSPM8
+     97 ATENSPM9
+    144 ATGP1
+    165 ATGP10
+     48 ATGP2
+     54 ATGP2N
+     60 ATGP3
+     86 ATGP5
+     25 ATGP6
+     47 ATGP7
+     92 ATGP8
+     27 ATGP9B
+     10 ATGP9LTR
+    105 ATHAT1
+     35 ATHAT10
+     19 ATHAT2
+     23 ATHAT3
+     20 ATHAT7
+     69 ATHATN1
+     48 ATHATN10
+     46 ATHATN2
+     70 ATHATN3
+     20 ATHATN3A
+     56 ATHATN4
+     42 ATHATN5
+     43 ATHATN6
+     71 ATHATN7
+     15 ATHATN8
+     12 ATHATN9
+    198 ATHILA
+    138 ATHILA0_I
+    413 ATHILA2
+    243 ATHILA3
+    250 ATHILA4
+    310 ATHILA4A
+    143 ATHILA4B_LTR
+    206 ATHILA4C
+    106 ATHILA4D_LTR
+    131 ATHILA5
+    247 ATHILA6A
+    134 ATHILA6B
+    134 ATHILA7
+     31 ATHILA7A
+     97 ATHILA8A
+     78 ATHILA8B
+     25 ATHPOGO
+    174 ATHPOGON1
+     27 ATHPOGON2
+    118 ATHPOGON3
+    173 ATIS112A
+    153 ATLANTYS1
+    179 ATLANTYS2
+    142 ATLANTYS3
+    289 ATLINE1A
+     61 ATLINE1_1
+     41 ATLINE1_2
+    160 ATLINE1_3A
+    102 ATLINE1_4
+     91 ATLINE1_5
+    129 ATLINE1_6
+    138 ATLINE2
+    196 ATLINEIII
+     59 ATMU1
+     87 ATMU10
+     20 ATMU11
+     64 ATMU2
+     15 ATMU3
+     19 ATMU3N1
+     14 ATMU4
+     24 ATMU5
+     26 ATMU6
+     39 ATMU6N1
+     32 ATMU7
+      9 ATMU8
+     16 ATMU9
+    107 ATMUN1
+      6 ATMUN2
+    155 ATMUNX1
+     65 ATN9_1
+     22 ATRE1
+    498 ATREP1
+     63 ATREP10
+    279 ATREP10A
+    491 ATREP10B
+    123 ATREP10C
+   1295 ATREP10D
+    841 ATREP11
+     95 ATREP11A
+     22 ATREP12
+    106 ATREP13
+     47 ATREP14
+   1003 ATREP15
+     47 ATREP16
+     34 ATREP17
+    391 ATREP18
+    189 ATREP19
+    164 ATREP2
+    116 ATREP2A
+   1439 ATREP3
+    832 ATREP4
+    624 ATREP5
+    181 ATREP6
+    164 ATREP7
+     75 ATREP8
+    201 ATREP9
+     33 ATSINE2A
+     98 ATSINE4
+    106 ATTIR16T3A
+     95 ATTIRTA1
+     63 ATTIRX1A
+     44 ATTIRX1B
+     39 ATTIRX1C
+     28 ATTIRX1D
+     28 BOMZH1
+     47 BOMZH2
+    251 BRODYAGA1
+    586 BRODYAGA1A
+    525 BRODYAGA2
+      1 DRL1
+    123 DT1
+     15 ENDOVIR1
+     90 HARBINGER
+    130 HELITRON1
+    194 HELITRON2
+     53 HELITRON3
+    199 HELITRON4
+     56 HELITRON5
+    271 HELITRONY1A
+    414 HELITRONY1B
+    120 HELITRONY1C
+    756 HELITRONY1D
+    447 HELITRONY1E
+    198 HELITRONY2
+   1399 HELITRONY3
+     49 HELITRONY3A
+    116 LIMPET1
+    138 META1
+     49 ROMANIAT5
+     87 RP1_AT
+    213 RathE1_cons
+     74 RathE2_cons
+    104 RathE3_cons
+     16 SADHU
+    116 SIMPLEGUY1
+     56 SIMPLEHAT1
+     73 SIMPLEHAT2
+      4 TA1-2
+    157 TA11
+      2 TA12
+      3 TA1_AT
+     28 TAG1
+     86 TAG2
+     97 TAG3N1
+     87 TAT1_ATH
+    162 TNAT1A
+     38 TNAT2A
+     81 TSCL
+    113 Unassigned
+     80 VANDAL1
+     13 VANDAL10
+     18 VANDAL11
+     37 VANDAL12
+     38 VANDAL13
+     25 VANDAL14
+      6 VANDAL15
+     42 VANDAL16
+    178 VANDAL17
+     14 VANDAL18
+     24 VANDAL18NA
+     19 VANDAL18NB
+     52 VANDAL1N1
+     43 VANDAL2
+     51 VANDAL20
+     64 VANDAL21
+     48 VANDAL22
+     51 VANDAL2N1
+    177 VANDAL3
+    102 VANDAL4
+     85 VANDAL5
+     56 VANDAL5A
+     89 VANDAL6
+     36 VANDAL7
+    123 VANDAL8
+     43 VANDAL9
+     14 VANDALNX1
+     37 VANDALNX2
+
+Le 1/04 on a choisit nous familles :
+Akshay : 
+15 ENDOVIR1:LTR/Copia
+160 ATLINE1_3A:LINE/L1
+
+Hugo:
+18 VANDAL11:DNA/MuDR
+196 ATLINEIII:LINE/L1
+
+Maxime:
+116 SIMPLEGUY1:DNA/Harbinger
+138 META1:LTR/Copia
+
+Le 4/04 j'étais absent.
+
+Le 11/04/2025, je rattrape ce que mes collègues de groupe ont réalisé lors de la dernière séance. Ensuite, nous travaillons ensemble pour comprendre les prochaines étapes à entreprendre.
+De plus j'ai commence le modèle EA 
+
+PAUSE PARTIEL / STAGE
+
+Le 17/05/2025 on a fait les Blast et j'ai vu que maxime avait beaucoup de resultats et du coup 
+j'ai fait un script python pour faire les alignments par blast.
+
+Le 26/05 et 27/05 on a travaille ensemble pour finir
+

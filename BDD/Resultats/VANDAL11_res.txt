@@ -1,0 +1,12 @@
+# BLASTN 2.12.0+
+# Query: sp
+# Database: VANDAL11_copies.txt
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 6 hits found
+sp	AT4TE21900	100.000	10815	0	0	2	10816	1	10815	0.0	19972
+sp	AT4TE21900	100.000	3350	0	0	10817	14166	10864	14213	0.0	6187
+sp	AT4TE21900	89.767	215	17	3	6345	6555	6097	6310	1.46e-73	270
+sp	AT4TE21900	89.767	215	17	3	6098	6311	6344	6554	1.46e-73	270
+sp	AT4TE21900	87.407	135	16	1	10809	10943	10682	10815	1.53e-38	154
+sp	AT4TE21900	88.189	127	15	0	10690	10816	10864	10990	5.50e-38	152
+# BLAST processed 1 queries

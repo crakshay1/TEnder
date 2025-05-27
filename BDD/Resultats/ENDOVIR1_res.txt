@@ -1,0 +1,15 @@
+# BLASTN 2.12.0+
+# Query: sp|
+# Database: ENDOVIR1_copies.txt
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 9 hits found
+sp|	AT5TE63610	99.989	9083	1	0	1	9083	6	9088	0.0	16768
+sp|	AT5TE63610	99.819	554	1	0	8530	9083	1	554	0.0	1018
+sp|	AT5TE63610	99.818	549	1	0	1	549	8540	9088	0.0	1009
+sp|	AT1TE53090	91.925	1548	108	14	5241	6776	3540	5082	0.0	2150
+sp|	AT1TE53090	89.037	1350	144	4	1	1347	1	1349	0.0	1670
+sp|	AT1TE53090	82.592	1798	277	20	1204	2990	1356	3128	0.0	1554
+sp|	AT1TE53090	92.606	541	36	4	8535	9072	1	540	0.0	774
+sp|	AT3TE66030	92.029	552	42	2	1	550	1	552	0.0	774
+sp|	AT3TE66030	92.015	551	42	2	8535	9083	1	551	0.0	773
+# BLAST processed 1 queries
