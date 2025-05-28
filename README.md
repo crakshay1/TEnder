@@ -1,4 +1,4 @@
-# Annexe du projet TEnder : Etude des éléments transposables du génome de l'Arabidopsis Thaliana
+# *Annexe du projet TEnder* : Etude des éléments transposables du génome de l'Arabidopsis Thaliana
 
 ## Histogrammes
 📊 [Voir le code des histogrammes et les histogrammes](https://github.com/crakshay1/TEnder/tree/main/Histogrammes)
