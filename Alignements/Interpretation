@@ -4,18 +4,22 @@ Cela suggère une copie très conservée et  probablement fonctionnelle.
 Les autres alignements, avec +-88–90 % d’identité restent élevés et confirment un bon état de conservation.
 
 ATLINEIII:
-La copie AT2TE01000 présente un alignement complet avec la séquence de référence ATLINEIII, avec une identité de 99,91 %, ce qui indique qu’elle est très bien conservée et probablement fonctionnelle. 
-En comparaison, la majorité des autres copies montrent des alignements partiels et des taux d’identité plus faibles, cela reflète une forte divergence et suggère qu’elles sont non fonctionnelles ou anciennes. 
+La copie AT2TE01000 présente un alignement complet avec la séquence de référence ATLINEIII, avec une identité de 99,91 %, 
+ce qui indique qu’elle est très bien conservée et probablement fonctionnelle. 
+En comparaison, la majorité des autres copies montrent des alignements partiels et des taux d’identité plus faibles, 
+cela reflète une forte divergence et suggère qu’elles sont non fonctionnelles ou anciennes. 
 Cela met en évidence la rareté des copies intactes au sein de cette famille.
 
 META1:
-La copie AT3TE76010 de la famille META1 présente un alignement presque complet avec la séquence de référence, avec plus de 98 % d’identité sur l’ensemble de la longueur, et même 100 % sur certaines régions. 
+La copie AT3TE76010 de la famille META1 présente un alignement presque complet avec la séquence de référence, avec plus de 98 % d’identité sur l’ensemble de la longueur, 
+et même 100 % sur certaines régions. 
 Cela suggère une copie bien conservée et potentiellement fonctionnelle. 
 Parmi les autres copies analysées de META1, plusieurs montrent également des alignements longs et très identiques, indiquant que cette famille conserve encore plusieurs copies actives.
 Cela renforce l’idée que META1 est une famille d’éléments transposables encore dynamique.
 
 SIMPLEGUY1:
-La copie AT1TE81150 de la famille SIMPLEGUY1 présente un alignement incomplet avec la séquence de référence, avec une identité globale de 89,84 % et des segments à ~84 %, ainsi qu’une délétion visible en fin de séquence. 
+La copie AT1TE81150 de la famille SIMPLEGUY1 présente un alignement incomplet avec la séquence de référence, avec une identité globale de 89,84 % et des segments à ~84 %, 
+ainsi qu’une délétion visible en fin de séquence. 
 Cela suggère qu’elle est peu susceptible d’être fonctionnelle. Globalement, la famille SIMPLEGUY1 contient beaucoup de copies tronquées ou altérées, avec de grandes délétions. 
 Toutefois, deux ou trois copies se démarquent par des alignements longs et des identités élevées, ce qui indique qu’elles pourraient être encore fonctionnelles.
 
@@ -25,6 +29,8 @@ Ce résultat suggère que cette copie est très dégradée et probablement non f
 Les autres copies analysées de cette famille sont encore plus fragmentées ou divergentes, ce qui indique que la famille ATLINE1_3A semble largement inactive dans le génome étudié.
 
 ENDOVIR1:
-La copie AT5TE63610 de la famille ENDOVIR1 montre un alignement complet avec la référence, à 99,99 % d’identité, ce qui en fait une copie parfaitement conservée et très probablement fonctionnelle. 
-En revanche, les deux autres copies présentent des délétions importantes : l'une montre une fragmentation importante avec des segments à ~82–92 % d’identité, tandis que l’autre n’aligne que les extrémités. 
+La copie AT5TE63610 de la famille ENDOVIR1 montre un alignement complet avec la référence, à 99,99 % d’identité, 
+ce qui en fait une copie parfaitement conservée et très probablement fonctionnelle. 
+En revanche, les deux autres copies présentent des délétions importantes : l'une montre une fragmentation importante avec des segments à ~82–92 % d’identité, 
+tandis que l’autre n’aligne que les extrémités. 
 Ces profils suggèrent que ces deux copies sont dégradées et probablement non fonctionnelles.
